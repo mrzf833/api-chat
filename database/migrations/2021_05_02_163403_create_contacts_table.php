@@ -17,6 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->foreignId('me');
             $table->foreignId('friend');
+            $table->enum('status',['proses','ditolak', 'diterima'])->default('proses');
             $table->timestamps();
 
             $table->foreign('me')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

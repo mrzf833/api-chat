@@ -22,10 +22,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'data' => [
-                'token' => $token,
-                'username' => auth()->user()->username,
-            ]
+            'token' => $token,
         ]);
     }
 
@@ -57,5 +54,12 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
+    }
+
+    public function user()
+    {
+        return response()->json([
+            'data' => auth()->user()
+        ]);
     }
 }

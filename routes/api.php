@@ -17,8 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [AuthController::class, 'login']);
-Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('contact', [ContactController::class, 'index']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('user', [AuthController::class, 'user']);
+
+    Route::group(['prefix' => 'contact'], function(){
+        Route::get('', [ContactController::class, 'index']);
+        Route::post('', [ContactController::class, 'store']);
+        Route::get('proses', [ContactController::class, 'proses']);
+        Route::get('tolak', [ContactController::class, 'tolak']);
+        Route::get('konfirmasi', [ContactController::class, 'konfirmasi']);
+        Route::patch('konfirmasi/{friend}', [ContactController::class, 'proses_konfirmasi']);
+    });
 });
