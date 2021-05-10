@@ -10,10 +10,33 @@ class UserObserver
 {
     public function created(Contact $contact)
     {
-        $author = User::find(1);
-        $users = User::all();
-        foreach ($users as $user) {
-            $user->notify(new NewItem($contact,$author));
+        $userFriend = $contact->friendd()->first();
+        $userFriend->notify(new NewItem($contact));
+        
+        $userMe = $contact->mee()->first();
+        $userMe->notify(new NewItem($contact));
+    }
+
+    public function updated(Contact $contact)
+    {
+        if($contact->status === 'ditolak'){
+            $userFriend = $contact->friendd()->first();
+            $userFriend->notify(new NewItem($contact));
+            
+            $userMe = $contact->mee()->first();
+            $userMe->notify(new NewItem($contact));
+        }else if($contact->status === 'diterima'){
+            $userFriend = $contact->friendd()->first();
+            $userFriend->notify(new NewItem($contact));
+            
+            $userMe = $contact->mee()->first();
+            $userMe->notify(new NewItem($contact));
+        }else{
+            $userFriend = $contact->friendd()->first();
+            $userFriend->notify(new NewItem($contact));
+            
+            $userMe = $contact->mee()->first();
+            $userMe->notify(new NewItem($contact));
         }
     }
 }

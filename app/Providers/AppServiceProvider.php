@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Contact;
+use App\Models\Message;
+use App\Observers\MessageObserver;
+use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
 
@@ -25,8 +28,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Broadcast::routes(['middleware' => ['jwt.auth']]);
-        // require base_path('routes/channels.php');
-        Contact::observe(ItemObserver::class);
+        //  Broadcast::routes();
+        // Broadcast::routes(['middleware' => ['auth:api']]);
+        Broadcast::routes(['middleware' => ['jwt.auth']]);
+
+        require base_path('routes/channels.php');
+        Contact::observe(UserObserver::class);
+        Message::observe(MessageObserver::class);
     }
 }

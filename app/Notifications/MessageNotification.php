@@ -2,28 +2,29 @@
 
 namespace App\Notifications;
 
-use App\Http\Resources\ContactNotificationResource;
-use App\Models\User;
-use App\Models\Contact;
+use App\Http\Resources\MessageResource;
+use App\Http\Resources\MessegeNotificationResource;
+use App\Models\Message;
 use Illuminate\Bus\Queueable;
-use App\Http\Resources\ContactResource;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class NewItem extends Notification
+class MessageNotification extends Notification
 {
     use Queueable;
 
-    protected $contact;
+    protected $message;
+    protected $status;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Contact $contact)
+    public function __construct(Message $message, $status)
     {
-        $this->contact = $contact;
+        $this->message = $message;
+        $this->status = $status;
     }
 
     /**
@@ -34,7 +35,7 @@ class NewItem extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['broadcast'];
     }
 
     /**
@@ -46,7 +47,7 @@ class NewItem extends Notification
     public function toArray($notifiable)
     {
         return [
-            'contact' => new ContactNotificationResource($this->contact)
+            'message' => new MessegeNotificationResource(['message' => $this->message, 'status' => $this->status])
         ];
-    }  
+    }
 }

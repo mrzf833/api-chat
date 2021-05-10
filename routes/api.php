@@ -3,6 +3,8 @@
 use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('register', [AuthController::class, 'register']);
-    Route::get('user', [AuthController::class, 'user']);
-
+    Route::get('check/online', [UserController::class, 'userOnlineStatus']);
     Route::group(['prefix' => 'contact'], function(){
         Route::get('', [ContactController::class, 'index']);
         Route::post('', [ContactController::class, 'store']);
@@ -30,4 +30,14 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::get('konfirmasi', [ContactController::class, 'konfirmasi']);
         Route::patch('konfirmasi/{friend}', [ContactController::class, 'proses_konfirmasi']);
     });
+
+    Route::group(['prefix' => 'message'], function(){
+        Route::get('/read-message/{id}', [MessageController::class, 'read_all_message']);
+        Route::get('/user/{id}', [MessageController::class, 'user_message']);
+        Route::get('/{id}', [MessageController::class, 'message_data']);
+        Route::post('/{id}', [MessageController::class, 'store']);
+    });
 });
+
+Route::post('register', [AuthController::class, 'register']);
+Route::get('user', [AuthController::class, 'user']);

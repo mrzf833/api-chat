@@ -89,8 +89,8 @@ class ContactController extends Controller
     {
         $contacts = Contact::with('friendd', 'mee')
         ->where(function($q){
-            $q->where('me', auth()->id())
-            ->orWhere('friend', auth()->id());
+            $q->where('me', auth()->id());
+            // ->orWhere('friend', auth()->id());
         })
         ->where('status', 'ditolak')
         ->get();

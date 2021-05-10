@@ -9,4 +9,14 @@ class Message extends Model
 {
     protected $guarded = [];
     use HasFactory;
+
+    public function pengirim()
+    {
+        return $this->belongsTo(User::class, 'pengirim','id');
+    }
+
+    public function penerima()
+    {
+        return $this->belongsTo(User::class, 'penerima', 'id');
+    }
 }
