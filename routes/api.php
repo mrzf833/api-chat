@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('close/window', [UserController::class, 'closeWindow']);
     Route::get('check/online', [UserController::class, 'userOnlineStatus']);
     Route::group(['prefix' => 'contact'], function(){
         Route::get('', [ContactController::class, 'index']);

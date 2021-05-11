@@ -47,4 +47,11 @@ class UserController extends Controller
 
         return $terakhir_dilihat;
     }
+
+    public function closeWindow()
+    {
+        auth()->user()->update([
+            'updated_at' => Carbon::now()
+        ]);
+    }
 }
