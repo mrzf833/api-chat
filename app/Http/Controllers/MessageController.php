@@ -28,13 +28,18 @@ class MessageController extends Controller
         // return $user;
     }
 
-    public function message_data($user_id)
+    public function message_data(Request $request,$user_id)
     {
         $check_contact = CheckUserHelper::check_user_contact($user_id);
         if($check_contact['status']){
             return response()->json(['message' => 'anda belum berteman'], 422);
         }
+
+        $this->validate($request,[
+            'skip' => 'nullable|numeric'
+        ]);
         $this->read_all_message($user_id);
+        $skip = $request->skip ?? 0;
         $messages = Message::where(function($qu) use ($user_id){
             $qu->where(function($q) use ($user_id){
                 $q->where('pengirim', auth()->id())
@@ -44,7 +49,7 @@ class MessageController extends Controller
                 $q->where('pengirim', $user_id)
                 ->where('penerima', auth()->id());
             });
-        })->orderBy('created_at', 'desc')->paginate();
+        })->orderBy('created_at', 'desc')->skip($skip)->take(10)->get();
         return MessageResource::collection($messages);
         return 'ini adalah message';
     }

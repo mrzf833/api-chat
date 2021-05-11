@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,14 +13,25 @@ class UserController extends Controller
 {
     public function userOnlineStatus()
     {
-        $users = DB::table('users')->get();
-    
-        foreach ($users as $user) {
-            if (Cache::has('user-is-online-' . $user->id))
-                echo "User " . $user->name . " is online.";
-            else
-                echo "User " . $user->name . " is offline.";
+        $contacts = Contact::where('status', 'diterima')
+        ->where(function($q){
+            $q->where('me', auth()->id())
+            ->orWhere('friend', auth()->id());
+        })
+        ->get();
+
+        $users = [];
+        foreach ($contacts as $contact) {
+            $user_id = $contact->me == auth()->id() ? $contact->friend : $contact->me;
+            if (Cache::has('user-is-online-' . $user_id)){
+                array_push($users,['id' => $user_id, 'status' => 'online']);
+            }else{
+                $user = User::find($user_id);
+                array_push($users, ['id' => $user_id, 'status' => Carbon::parse($user->updated_at)->isoFormat('DD/MM/YYYY HH:mm')]);
+            }
         }
+
+        return response()->json($users);
     }
 
     public static function userOnlineStatusFind($user_id)
