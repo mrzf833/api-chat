@@ -4,39 +4,39 @@ namespace App\Observers;
 
 use App\Models\Contact;
 use App\Models\User;
-use App\Notifications\NewItem;
+use App\Notifications\ContactNotification;
 
-class UserObserver
+class ContactObserver
 {
     public function created(Contact $contact)
     {
         $userFriend = $contact->friendd()->first();
-        $userFriend->notify(new NewItem($contact));
+        $userFriend->notify(new ContactNotification($contact));
         
         $userMe = $contact->mee()->first();
-        $userMe->notify(new NewItem($contact));
+        $userMe->notify(new ContactNotification($contact));
     }
 
     public function updated(Contact $contact)
     {
         if($contact->status === 'ditolak'){
             $userFriend = $contact->friendd()->first();
-            $userFriend->notify(new NewItem($contact));
+            $userFriend->notify(new ContactNotification($contact));
             
             $userMe = $contact->mee()->first();
-            $userMe->notify(new NewItem($contact));
+            $userMe->notify(new ContactNotification($contact));
         }else if($contact->status === 'diterima'){
             $userFriend = $contact->friendd()->first();
-            $userFriend->notify(new NewItem($contact));
+            $userFriend->notify(new ContactNotification($contact));
             
             $userMe = $contact->mee()->first();
-            $userMe->notify(new NewItem($contact));
+            $userMe->notify(new ContactNotification($contact));
         }else{
             $userFriend = $contact->friendd()->first();
-            $userFriend->notify(new NewItem($contact));
+            $userFriend->notify(new ContactNotification($contact));
             
             $userMe = $contact->mee()->first();
-            $userMe->notify(new NewItem($contact));
+            $userMe->notify(new ContactNotification($contact));
         }
     }
 }
