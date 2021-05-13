@@ -6,4 +6,6 @@
 - `composer install`
 - `cp .env.example .env`
 - `setting .env nya yaitu`
-    - `Databasenya`
+    - `Sesuaikan Databasenya`
+    - `ganti BROADCAST_DRIVER=log menjadi BROADCAST_DRIVER=pusher`
+    - `Sesuaikan Data Pusher`
