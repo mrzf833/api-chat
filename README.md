@@ -15,6 +15,7 @@
     - `ganti BROADCAST_DRIVER=log menjadi BROADCAST_DRIVER=pusher`
     - `Sesuaikan Data Pusher`
 - `php artisan key:generate`
+- `php artisan jwt:secret`
 - `php artisan migrate:fresh --seed`
 
 ## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="">Web Chat</a>
