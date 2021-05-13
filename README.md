@@ -18,6 +18,6 @@
 - `php artisan jwt:secret`
 - `php artisan migrate:fresh --seed`
 
-## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="">Web Chat</a>
+## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="https://github.com/mrzf833/web-chat.git">Web Chat</a>
 
 # Dokumentasi Apinya
