@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ContactNotificationResource extends JsonResource
@@ -20,13 +21,13 @@ class ContactNotificationResource extends JsonResource
                 'id' => $this->mee->id,
                 'name' => $this->mee->name,
                 'username' => $this->mee->username,
-                'terakhir_dilihat' => $this->mee->updated_at,
+                'terakhir_dilihat' => UserController::userOnlineStatusFind($this->mee->id)
             ],
             'friend' => [
                 'id' => $this->friendd->id,
                 'name' =>  $this->friendd->name,
                 'username' =>  $this->friendd->username,
-                'terakhir_dilihat' =>  $this->friendd->updated_at
+                'terakhir_dilihat' =>  UserController::userOnlineStatusFind($this->friendd->id)
             ],
             'status' => $this->status,
             'created_at' => $this->created_at,

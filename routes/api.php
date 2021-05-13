@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\SendGlobalUserNotification;
 use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AuthController;
@@ -42,3 +43,4 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::post('register', [AuthController::class, 'register']);
 Route::get('user', [AuthController::class, 'user']);
+Route::get('all-user', [AuthController::class, 'all_user']);

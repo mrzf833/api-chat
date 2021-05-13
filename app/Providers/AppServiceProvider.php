@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Contact;
 use App\Models\Message;
+use App\Models\User;
 use App\Observers\ContactObserver;
 use App\Observers\MessageObserver;
+use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
 
@@ -35,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         require base_path('routes/channels.php');
         Contact::observe(ContactObserver::class);
         Message::observe(MessageObserver::class);
+        User::observe(UserObserver::class);
     }
 }

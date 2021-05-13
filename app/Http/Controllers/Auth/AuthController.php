@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -30,7 +31,6 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required',
             'username' => 'required|unique:users,username',
             'password' => 'required'
         ]);
@@ -38,7 +38,7 @@ class AuthController extends Controller
         DB::beginTransaction();
         try{
             User::create([
-                'name' => $request->name,
+                'name' => $request->username,
                 'username' => $request->username,
                 'password' => bcrypt($request->password)
             ]);
@@ -65,5 +65,12 @@ class AuthController extends Controller
         return response()->json([
             'data' => auth()->user()
         ]);
+    }
+
+    public function all_user()
+    {
+        $users = User::get();
+
+        return UserResource::collection($users);
     }
 }
