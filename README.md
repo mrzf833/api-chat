@@ -6,4 +6,4 @@
 - `composer install`
 - `cp .env.example .env`
 - `setting .env nya yaitu`
--- `Databasenya`
+    - `Databasenya`
