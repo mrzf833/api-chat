@@ -306,9 +306,7 @@ Request :
 Response :
 ```json
 {
-    "message": "contact berhasil di ditolak" 
-    atau 
-    "message": "contact berhasil di diterima"
+    "message": "contact berhasil di ditolak atau diterima" 
 }
 ```
 
