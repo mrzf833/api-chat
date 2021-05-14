@@ -311,5 +311,75 @@ Response :
 ```
 
 
-# message belum dibuat apinya
+## read all message
 
+Request :
+- Method : GET
+- Endpoint : `/api/message/read-message/{user_id}`
+
+Response :
+```json
+{
+    "message": "message berhasil di read semua"
+}
+```
+
+## melihat profile pertemanan
+
+Request :
+- Method : GET
+- Endpoint : `/api/message/user/{user_id}`
+
+Response :
+```json
+{
+    "id": 1,
+    "name": "user1",
+    "username": "user1",
+    "terakhir_dilihat": "online"
+}
+```
+
+## mendapatkan message friend
+
+Request :
+- Method : GET
+- Endpoint : `/api/message/{user_id}?skip=0`
+
+Response :
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "pengirim": 1,
+            "penerima": 2,
+            "pesan": "saasas",
+            "read_at": "14/05/2021 19:40",
+            "created_at": "14/05/2021 19:40",
+            "timestamp": 1620996009,
+            "time": "19.40"
+        }
+    ]
+}
+```
+
+## Kirim Pesan
+
+Request :
+- Method : POST
+- Endpoint : `/api/message/{user_id}`
+- Body : 
+
+    ```json
+    {
+        "pesan" : "required"
+    }
+    ```
+
+Response :
+```json
+{
+    "belum dibuat"
+}
+```
