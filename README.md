@@ -380,6 +380,13 @@ Request :
 Response :
 ```json
 {
-    "belum dibuat"
+    "message": {
+        "pengirim": 2,
+        "penerima": "1",
+        "pesan": "hallo bro",
+        "updated_at": "2021-05-14T12:56:58.000000Z",
+        "created_at": "2021-05-14T12:56:58.000000Z",
+        "id": 9
+    }
 }
 ```
