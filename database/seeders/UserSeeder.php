@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,36 +15,22 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => 'admin',
-        //     'username' => 'admin',
-        //     'password' => bcrypt('admin')
-        // ]);
+        User::create([
+            'name' => 'user1',
+            'username' => 'user1',
+            'password' => bcrypt('user1')
+        ]);
 
-        // User::create([
-        //     'name' => 'admin2',
-        //     'username' => 'admin2',
-        //     'password' => bcrypt('admin2')
-        // ]);
+        User::create([
+            'name' => 'user2',
+            'username' => 'user2',
+            'password' => bcrypt('user2')
+        ]);
 
-        // User::create([
-        //     'name' => 'admin3',
-        //     'username' => 'admin3',
-        //     'password' => bcrypt('admin3')
-        // ]);
+        // $user_id_1 = User::where('username', 'user1')->first()->id;
+        // $user_id_2 = User::where('username', 'user2')->first()->id;
+        // Contact::create([
 
-        // User::create([
-        //     'name' => 'admin4',
-        //     'username' => 'admin4',
-        //     'password' => bcrypt('admin4')
         // ]);
-
-        for ($i=5; $i < 20; $i++) { 
-            User::create([
-                'name' => 'admin'.$i,
-                'username' => 'admin'.$i,
-                'password' => bcrypt('admin' . $i)
-            ]);
-        }
     }
 }

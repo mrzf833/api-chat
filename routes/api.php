@@ -21,9 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
+Route::post('register', [AuthController::class, 'register']);
+Route::get('all-user', [AuthController::class, 'all_user']);
+
 Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('user', [AuthController::class, 'user']);
     Route::get('close/window', [UserController::class, 'closeWindow']);
     Route::get('check/online', [UserController::class, 'userOnlineStatus']);
+
     Route::group(['prefix' => 'contact'], function(){
         Route::get('', [ContactController::class, 'index']);
         Route::post('', [ContactController::class, 'store']);
@@ -40,7 +45,3 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::post('/{id}', [MessageController::class, 'store']);
     });
 });
-
-Route::post('register', [AuthController::class, 'register']);
-Route::get('user', [AuthController::class, 'user']);
-Route::get('all-user', [AuthController::class, 'all_user']);

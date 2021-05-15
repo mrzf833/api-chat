@@ -58,6 +58,8 @@ class AuthController extends Controller
             'updated_at' => Carbon::now()
         ]);
         auth()->logout();
+
+        return response()->json(['message' => 'user berhasil logout']);
     }
 
     public function user()

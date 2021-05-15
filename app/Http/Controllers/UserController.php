@@ -53,5 +53,7 @@ class UserController extends Controller
         auth()->user()->update([
             'updated_at' => Carbon::now()
         ]);
+
+        return response()->json(['message' => 'user berhasil di update']);
     }
 }

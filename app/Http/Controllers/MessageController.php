@@ -25,7 +25,6 @@ class MessageController extends Controller
             'username' => $user->username,
             'terakhir_dilihat' => UserController::userOnlineStatusFind($user_id)
         ]);
-        // return $user;
     }
 
     public function message_data(Request $request,$user_id)
