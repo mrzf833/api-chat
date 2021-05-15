@@ -27,10 +27,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('user2')
         ]);
 
-        // $user_id_1 = User::where('username', 'user1')->first()->id;
-        // $user_id_2 = User::where('username', 'user2')->first()->id;
-        // Contact::create([
-
-        // ]);
+        $user_id_1 = User::where('username', 'user1')->first()->id;
+        $user_id_2 = User::where('username', 'user2')->first()->id;
+        Contact::create([
+            'me' => $user_id_1,
+            'friend' => $user_id_2,
+            'status' => 'diterima'
+        ]);
     }
 }
