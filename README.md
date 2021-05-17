@@ -24,9 +24,9 @@
 
 ```
 1. username: user1
-2. password: user1
+1. password: user1
 
-1.username: user2
+2.username: user2
 2.password: user2
 ```
 
