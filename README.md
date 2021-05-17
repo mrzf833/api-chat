@@ -20,7 +20,7 @@
 
 ## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="https://github.com/mrzf833/web-chat.git">Web Chat</a>
 
-# USER
+# USER Default
 
 ```
 1. username: user1
