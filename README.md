@@ -20,6 +20,16 @@
 
 ## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="https://github.com/mrzf833/web-chat.git">Web Chat</a>
 
+# USER
+
+```
+1. username: user1
+2. password: user1
+
+1.username: user2
+2.password: user2
+```
+
 # API Spec
 
 ## No Authentication
