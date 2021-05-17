@@ -72,7 +72,7 @@ Request :
 Response :
 ```json
 {
-    "token" : "secret api key"
+    "message": "user berhasil di buat"
 }
 ```
 
