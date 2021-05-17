@@ -32,6 +32,8 @@
 
 # API Spec
 
+
+
 ## No Authentication
 
 ## Login
@@ -95,6 +97,9 @@ Response :
     ]
 }
 ```
+
+
+
 
 
 ## Authentication
