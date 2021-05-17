@@ -20,7 +20,19 @@
 
 ## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="https://github.com/mrzf833/web-chat.git">Web Chat</a>
 
+# USER Default
+
+```
+1. username: user1
+1. password: user1
+
+2.username: user2
+2.password: user2
+```
+
 # API Spec
+
+
 
 ## No Authentication
 
@@ -62,7 +74,7 @@ Request :
 Response :
 ```json
 {
-    "token" : "secret api key"
+    "message": "user berhasil di buat"
 }
 ```
 
@@ -85,6 +97,9 @@ Response :
     ]
 }
 ```
+
+
+
 
 
 ## Authentication
