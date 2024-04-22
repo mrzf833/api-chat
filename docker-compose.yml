@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8084:80"  # Ubah port eksternal ke 8083
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks: 
+      - docker-mysql_mysql-phpmyadmin
+
+  app:
+    # image: coba-up-docker-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www/html
+    command: sh -c "chmod +x ./entrypoint.sh && ./entrypoint.sh && php-fpm"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - docker-mysql_mysql-phpmyadmin
+
+networks:
+  docker-mysql_mysql-phpmyadmin:
+    driver: bridge
+    external:
+      name: docker-mysql_mysql-phpmyadmin
