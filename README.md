@@ -18,6 +18,16 @@
 - `php artisan jwt:secret`
 - `php artisan migrate:fresh --seed`
 
+# dengan docker
+## install
+- `sesuaikan file .env.docker.example`
+- `docker compose up -d --build`
+- `docker exec -it api_chat_app /bin/sh`
+- `php artisan migrate:fresh --seed`
+
+## uninstall
+- `docker compose down --rmi=all`
+
 ## Jika Sudah Memasang Api Chatnya Silahkan Lanjutkan pemasangan Frontendnya ya itu <a href="https://github.com/mrzf833/web-chat.git">Web Chat</a>
 
 # USER Default
