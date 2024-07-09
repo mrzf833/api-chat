@@ -66,6 +66,13 @@ COPY . .
 
 RUN chmod -R 777 ./storage
 
-RUN chmod +x ./entrypoint.sh
+COPY .env.docker.example .env
+
+RUN composer install
+
+RUN php artisan key:generate
+
+RUN php artisan jwt:secret
 
 # ... Other setup and configurations ...
+CMD ["php-fpm"]
